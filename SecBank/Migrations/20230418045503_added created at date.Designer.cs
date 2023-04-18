@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SecBank.Data;
 
@@ -11,9 +12,11 @@ using SecBank.Data;
 namespace SecBank.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230418045503_added created at date")]
+    partial class addedcreatedatdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace SecBank.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SecBank.Entities.Models.Account", b =>
+            modelBuilder.Entity("SecBank.Models.Account", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -38,7 +41,7 @@ namespace SecBank.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("SecBank.Entities.Models.Transaction", b =>
+            modelBuilder.Entity("SecBank.Models.PaymentMethod", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -46,15 +49,36 @@ namespace SecBank.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AccountId")
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CardNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("PaymentMethods");
+                });
+
+            modelBuilder.Entity("SecBank.Models.Transaction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AccountId")
                         .HasColumnType("int");
 
                     b.Property<double>("Amount")
                         .HasColumnType("float");
 
-                    b.Property<string>("CreditCard")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("Balance")
+                        .HasColumnType("float");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -73,15 +97,32 @@ namespace SecBank.Migrations
                     b.ToTable("Transactions");
                 });
 
-            modelBuilder.Entity("SecBank.Entities.Models.Transaction", b =>
+            modelBuilder.Entity("SecBank.Models.PaymentMethod", b =>
                 {
-                    b.HasOne("SecBank.Entities.Models.Account", null)
-                        .WithMany("Transactions")
-                        .HasForeignKey("AccountId");
+                    b.HasOne("SecBank.Models.Account", "Account")
+                        .WithMany("PaymentMethods")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
                 });
 
-            modelBuilder.Entity("SecBank.Entities.Models.Account", b =>
+            modelBuilder.Entity("SecBank.Models.Transaction", b =>
                 {
+                    b.HasOne("SecBank.Models.Account", "Account")
+                        .WithMany("Transactions")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("SecBank.Models.Account", b =>
+                {
+                    b.Navigation("PaymentMethods");
+
                     b.Navigation("Transactions");
                 });
 #pragma warning restore 612, 618

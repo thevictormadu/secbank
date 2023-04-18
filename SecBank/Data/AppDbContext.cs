@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SecBank.Models;
+using SecBank.Entities.Models;
 
 namespace SecBank.Data
 {
@@ -9,8 +9,8 @@ namespace SecBank.Data
         {
 
         }
-        public DbSet<Account> Accounts { get; set; }
-        public DbSet<PaymentMethod> PaymentMethods { get; set; }
+
+
         public DbSet<Transaction> Transactions { get; set; }
 
     }
