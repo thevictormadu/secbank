@@ -9,6 +9,7 @@ using SecBank.Services;
 using System.Collections.Generic;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SecBank.Controllers
 {
@@ -30,6 +31,7 @@ namespace SecBank.Controllers
 
 
         [HttpPost("PostTransaction")]
+        [Authorize]
         public async Task<ActionResult<ApiResponse>> PostTransaction(PostTransactionDto transaction)
         {
             if (ModelState.IsValid)
@@ -53,6 +55,7 @@ namespace SecBank.Controllers
 
 
         [HttpPost("PostTransactions")]
+        [Authorize]
         public async Task<ActionResult> PostTransactions(IEnumerable<PostTransactionDto> transactions)
         {
             if (ModelState.IsValid)
@@ -83,6 +86,7 @@ namespace SecBank.Controllers
 
 
         [HttpGet("GetToken")]
+        
         public async Task<IActionResult> GetToken()
         {
             var result = await _transactionService.GetToken();
@@ -100,6 +104,7 @@ namespace SecBank.Controllers
 
 
         [HttpGet("GetAllTransactions")]
+        [Authorize]
         public async Task<IActionResult> GetTransactions()
         {
             var result = _transactionService.GetTransactions();
