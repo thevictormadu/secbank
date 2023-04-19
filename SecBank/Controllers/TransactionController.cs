@@ -1,15 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-
-using Microsoft.EntityFrameworkCore;
-using SecBank.Data;
-using SecBank.Entities.DTO;
-using SecBank.Entities.Models;
-using SecBank.Services;
-
-using System.Collections.Generic;
-
+﻿
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using SecBank.Data;
+using SecBank.Entities.DTO;
+using SecBank.Services;
 
 namespace SecBank.Controllers
 {
