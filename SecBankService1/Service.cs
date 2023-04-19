@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SecBank.Entities.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace SecBankService1
 {
     
 
-    internal class Service : IService
+    public class Service : IService
     {
         private readonly ServiceDbContext _db;
 
@@ -19,6 +20,25 @@ namespace SecBankService1
         public void PostTransaction()
         {
             var transactionsFromDb = _db.Transactions.Where(t => t.IsReccurent == true).ToList();
+
+            foreach (var transaction in transactionsFromDb)
+            {
+                if (transaction.DateCreated.AddDays(30) == DateTime.Now)
+                {
+                    Transaction newTransaction = new Transaction()
+                    {
+                        Amount = transaction.Amount,
+                        Description = transaction.Description,
+                        DateCreated = DateTime.Now,
+                        CreditCard = transaction.CreditCard,
+                        IsReccurent = true
+                    };
+                    _db.Transactions.Add(newTransaction);
+                    transaction.IsReccurent = false;
+                }
+            }
+
+            _db.SaveChanges();
 
         }
     }
