@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SecBankService1
+namespace SecBank.WorkerService
 {
     public class ServiceDbContext : DbContext 
     {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using SecBank.Abstractions;
 using SecBank.Entities.DTO;
 using SecBank.Entities.Models;
 using System.IdentityModel.Tokens.Jwt;
