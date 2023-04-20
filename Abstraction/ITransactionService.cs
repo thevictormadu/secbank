@@ -1,7 +1,7 @@
 ﻿using SecBank.Entities.DTO;
 using SecBank.Entities.Models;
 
-namespace SecBank.Services
+namespace SecBank.Abstractions
 {
     public interface ITransactionService
     {

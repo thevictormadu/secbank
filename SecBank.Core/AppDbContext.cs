@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SecBank.Entities.Models;
 
-namespace SecBank.Data
+namespace SecBank.Core
 {
     public class AppDbContext : DbContext 
     {

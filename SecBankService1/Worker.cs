@@ -1,4 +1,4 @@
-namespace SecBankService1
+namespace SecBank.WorkerService
 {
     public class Worker : BackgroundService
     {
