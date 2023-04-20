@@ -6,8 +6,6 @@ namespace SecBank.Entities.Models
     {
         [Key]
         public int Id { get; set; }
-
-        [Range(1, int.MaxValue)]
         public required double Amount { get; set; }
         public string Description { get; set; }
         [CreditCard]
