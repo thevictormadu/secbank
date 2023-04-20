@@ -67,7 +67,7 @@ namespace SecBank.Controllers
 
                     };
 
-                    break;
+                    
                 }
                 
             }
