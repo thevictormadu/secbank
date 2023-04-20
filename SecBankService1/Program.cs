@@ -1,8 +1,7 @@
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
-using SecBank.Data;
-using SecBankService1;
+using SecBank.WorkerService;
 using System.Data.Common;
 
 

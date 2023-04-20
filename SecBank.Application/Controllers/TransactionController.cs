@@ -1,9 +1,9 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using SecBank.Data;
 using SecBank.Entities.DTO;
-using SecBank.Services;
+using SecBank.Abstractions;
+using SecBank.Core;
 
 namespace SecBank.Controllers
 {
@@ -67,9 +67,9 @@ namespace SecBank.Controllers
 
                     };
 
-                    
+                    break;
                 }
-                
+
             }
             _response.StatusCode = System.Net.HttpStatusCode.BadRequest;
             _response.IsSuccess = false;
@@ -80,7 +80,7 @@ namespace SecBank.Controllers
 
 
         [HttpGet("GetToken")]
-        
+
         public async Task<IActionResult> GetToken()
         {
             var result = await _transactionService.GetToken();

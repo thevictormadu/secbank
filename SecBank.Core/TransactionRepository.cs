@@ -1,7 +1,8 @@
-﻿using SecBank.Entities.DTO;
+﻿using SecBank.Abstractions;
+using SecBank.Entities.DTO;
 using SecBank.Entities.Models;
 
-namespace SecBank.Data
+namespace SecBank.Core
 {
     
     public class TransactionRepository : ITransactionRepository
