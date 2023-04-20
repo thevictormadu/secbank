@@ -6,8 +6,22 @@ using SecBank.Abstractions;
 using SecBank.Core;
 using SecBank.Services;
 using System.Text;
+using Serilog;
+using Serilog.Events;
+using Serilog.Formatting.Compact;
+
+var logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .WriteTo.Console(new CompactJsonFormatter())
+    .WriteTo.File("logs/log.txt", rollingInterval:RollingInterval.Hour)
+    .CreateLogger();
+    
 
 var builder = WebApplication.CreateBuilder(args);
+
+//Add Serilog Logger
+builder.Logging.AddSerilog(logger);
+//builder.Host.UseSerilog();
 
 // Add services to the container.
 builder.Services.AddScoped<ITransactionService, TransactionService>();
