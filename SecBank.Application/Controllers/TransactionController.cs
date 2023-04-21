@@ -55,7 +55,7 @@ namespace SecBank.Controllers
             _logger.LogInformation("||GetAllTransactions|| endpoint triggered");
             try
             {
-                var result = _transactionService.GetTransactions();
+                var result = await _transactionService.GetTransactions();
                 if (result == null)
                 {
                     _response.StatusCode = System.Net.HttpStatusCode.BadRequest;

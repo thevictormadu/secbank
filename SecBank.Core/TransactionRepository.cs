@@ -1,4 +1,5 @@
-﻿using SecBank.Abstractions;
+﻿using Microsoft.EntityFrameworkCore;
+using SecBank.Abstractions;
 using SecBank.Entities.DTO;
 using SecBank.Entities.Models;
 
@@ -17,7 +18,7 @@ namespace SecBank.Core
 
         public async Task<IEnumerable<Transaction>> GetTransactions()
         {
-            var transactions =  _db.Transactions.ToList();  
+            var transactions = await _db.Transactions.ToListAsync();  
 
             return transactions;
         }
