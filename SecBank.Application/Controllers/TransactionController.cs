@@ -110,23 +110,23 @@ namespace SecBank.Controllers
             _logger.LogInformation("||PostTransactions|| endpoint triggered");
             try
             {
-                if (ModelState.IsValid)
-                {
+                bool posted = false;
+                
                     foreach (var transaction in transactions)
                     {
-                        var posted = await _transactionService.PostTransaction(transaction);
-                        if (posted)
-                        {
-                            _response.StatusCode = System.Net.HttpStatusCode.OK;
-                            _response.IsSuccess = true;
-                            _response.Result = transactions;
-
-                            return Ok(_response);
-                        };
-
-                        break;
+                        posted = await _transactionService.PostTransaction(transaction);
+                        
                     }
+
+                if (posted)
+                {
+                    _response.StatusCode = System.Net.HttpStatusCode.OK;
+                    _response.IsSuccess = true;
+                    _response.Result = transactions;
+
+                    return Ok(_response);
                 }
+
                 _response.StatusCode = System.Net.HttpStatusCode.BadRequest;
                 _response.IsSuccess = false;
                 _response.ErrorMessages.Add("Unsuccessful");
