@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecBank.Services", "SecBank
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecBank.Core", "SecBank.Core\SecBank.Core.csproj", "{A12976B0-37D8-47A5-A11D-CA73CDB9CC3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecBank.Application", "SecBank.Application\SecBank.Application.csproj", "{CDD396A3-D69E-4D88-A823-DAE6F678C49C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecBank.Application", "SecBank.Application\SecBank.Application.csproj", "{CDD396A3-D69E-4D88-A823-DAE6F678C49C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecBank.BgService", "SecBank.BackgroundService\SecBank.BgService.csproj", "{6EA5EDC9-94A7-4DC0-8D63-DB6A5EE0DA58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{CDD396A3-D69E-4D88-A823-DAE6F678C49C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDD396A3-D69E-4D88-A823-DAE6F678C49C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDD396A3-D69E-4D88-A823-DAE6F678C49C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EA5EDC9-94A7-4DC0-8D63-DB6A5EE0DA58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EA5EDC9-94A7-4DC0-8D63-DB6A5EE0DA58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EA5EDC9-94A7-4DC0-8D63-DB6A5EE0DA58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EA5EDC9-94A7-4DC0-8D63-DB6A5EE0DA58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
